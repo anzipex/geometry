@@ -13,17 +13,11 @@
 
 class Object {
 public:
-    Object(std::vector<std::string> args);
+    Object(std::map<std::string, int> getFigures, std::vector<std::string> getFigureNames);
     ~Object() = default;
     void draw();
 
 private:
-    static void printUsage();
-    void parseArgs();
-    static bool isFigure(std::string figure);
-    static bool isDigit(std::string next);
-    void checkNextFigureNotEnd(std::vector<std::string>::iterator next);
-    void getFigureNames();
     void moveWidthToCenter(int count);
     void setHeight();
     void square(int count);
@@ -35,6 +29,9 @@ private:
     void circle(int count);
     void drawCircle(int number) const;
 
+    std::map<std::string, int> _figures;
+    std::vector<std::string> _figureNames;
+    
     int _width;
     int _height;
     int _widthToCenter;
@@ -44,11 +41,6 @@ private:
     int _heightRect;
     int _heightTriangle;
     int _heightCircle;
-
-    std::vector<std::string> _figureNames;
-    std::vector<std::string> _args;
-    std::vector<std::string>::iterator _curFigure;
-    std::map<std::string, int> _figures;
 };
 
 #endif /* OBJECT_H */

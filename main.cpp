@@ -6,8 +6,8 @@
  */
 
 #include <iostream>
-#include <vector>
 #include <GL/glut.h>
+#include "Parser.h"
 #include "Object.h"
 
 namespace {
@@ -61,11 +61,8 @@ void KeyboardFunc(unsigned char key, int x, int y) {
 }
 
 int main(int argc, char** argv) {
-    std::vector<std::string> args;
-    for (int i = 1; i < argc; ++i) {
-        args.push_back(argv[i]);
-    }
-    object = new Object(args);
+    Parser parser(argc, argv);
+    object = new Object(parser.getFigures(), parser.getFigureNames());
     Display(argc, argv);
 
     glutMainLoop();

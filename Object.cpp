@@ -11,7 +11,9 @@
 #include <GL/glut.h>
 #include "Object.h"
 
-Object::Object(std::vector<std::string> args) :
+Object::Object(std::map<std::string, int> getFigures, std::vector<std::string> getFigureNames) :
+_figures(getFigures),
+_figureNames(getFigureNames),
 _width(50),
 _height(50),
 _widthToCenter(0),
@@ -19,63 +21,8 @@ _widthShift(150),
 _heightSquare(0),
 _heightRect(0),
 _heightTriangle(0),
-_heightCircle(0),
-_figureNames(),
-_args(args),
-_curFigure(),
-_figures() {
-    parseArgs();
-    getFigureNames();
+_heightCircle(0) {
     setHeight();
-}
-
-void Object::printUsage() {
-    std::cout << "Usage: ./geometry square n rect n triangle n circle n" << std::endl;
-}
-
-void Object::parseArgs() {
-    for (_curFigure = std::begin(_args); _curFigure != std::end(_args); ++_curFigure) {
-        if (isFigure(*_curFigure)) {
-            checkNextFigureNotEnd(std::next(_curFigure));
-        } else {
-            std::cerr << "'" << (*_curFigure) << "'" << " is invalid figure" << std::endl;
-            printUsage();
-        }
-    }
-}
-
-bool Object::isFigure(std::string figure) {
-    return (figure == "square" || figure == "rect" || figure == "triangle" || figure == "circle");
-}
-
-bool Object::isDigit(std::string next) {
-    for (char& c : next) {
-        if (!isdigit(c) || isalpha(c)) {
-            return false;
-        };
-    }
-    return true;
-}
-
-void Object::checkNextFigureNotEnd(std::vector<std::string>::iterator next) {
-    if (next != std::end(_args) && !isFigure(*next)) {
-        if (isDigit(*next)) {
-            _figures.insert({*_curFigure, std::stoi(*next)});
-        }
-        *(++_curFigure);
-    }
-}
-
-void Object::getFigureNames() {
-    std::string prev;
-    for (int i = 0; i < _args.size(); ++i) {
-        if (isFigure(_args[i])) {
-            if (_args[i] != prev) {
-                _figureNames.push_back(_args[i]);
-            }
-            prev = _args[i];
-        }
-    }
 }
 
 void Object::moveWidthToCenter(int count) {
