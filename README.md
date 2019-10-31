@@ -11,7 +11,3 @@ sudo apt install freeglut3 freeglut3-dev
 ./geometry square n rect n triangle n circle n
 Only 5 pieces are provided for correct display.
 ```
-
-###### Controls:
-- f11 - fullscreen
-- esc - exit
