@@ -1,6 +1,6 @@
 /** 
  * @file Parser.h
- * @brief Описание класса Parser
+ * @brief Class description Parser
  * @author a.akulin
  * @date October 31, 2019
  */

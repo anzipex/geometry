@@ -1,6 +1,6 @@
 /** 
  * @file Object.cpp
- * @brief Реализация класса Object
+ * @brief Class implementation Object
  * @author a.akulin
  * @date October 7, 2019
  */

@@ -1,6 +1,6 @@
 /** 
  * @file Object.h
- * @brief Описание класса Object
+ * @brief Class description Object
  * @author a.akulin
  * @date October 7, 2019
  */

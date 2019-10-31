@@ -1,6 +1,6 @@
 /** 
  * @file Parser.cpp
- * @brief Реализация класса Parser
+ * @brief Class implementation Parser
  * @author a.akulin
  * @date October 31, 2019
  */
