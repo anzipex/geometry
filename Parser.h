@@ -15,11 +15,11 @@ class Parser {
 public:
     Parser(int argc, char** argv);
     ~Parser() = default;
-    std::map<std::string, int> getFigures();
-    std::vector<std::string> getFigureNames();
+    std::map<std::string, int> getFigures() const;
+    std::vector<std::string> getFigureNames() const;
 
 private:
-    void printUsage();
+    static void printUsage();
     void parseArgs();
     static bool isFigure(std::string figure);
     static bool isDigit(std::string next);

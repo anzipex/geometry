@@ -71,10 +71,10 @@ void Parser::formFigureNames() {
     }
 }
 
-std::map<std::string, int> Parser::getFigures() {
+std::map<std::string, int> Parser::getFigures() const {
     return _figures;
 }
 
-std::vector<std::string> Parser::getFigureNames() {
+std::vector<std::string> Parser::getFigureNames() const {
     return _figureNames;
 }
