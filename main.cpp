@@ -62,7 +62,7 @@ void KeyboardFunc(unsigned char key, int x, int y) {
 
 int main(int argc, char** argv) {
     Parser parser(argc, argv);
-    object = new Object(parser.getFigures(), parser.getFigureNames());
+    object = new Object(parser.getFigures());
     Display(argc, argv);
 
     glutMainLoop();

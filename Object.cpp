@@ -11,9 +11,9 @@
 #include <GL/glut.h>
 #include "Object.h"
 
-Object::Object(std::map<std::string, int> getFigures, std::vector<std::string> getFigureNames) :
-_figures(getFigures),
-_figureNames(getFigureNames),
+Object::Object(std::map<std::string, int> figures) :
+_figures(figures),
+_figureNames(),
 _width(50),
 _height(50),
 _widthToCenter(0),
@@ -22,7 +22,14 @@ _heightSquare(0),
 _heightRect(0),
 _heightTriangle(0),
 _heightCircle(0) {
+    formFigureNames();
     setHeight();
+}
+
+void Object::formFigureNames() {
+    for (auto& f : _figures) {
+        _figureNames.push_back(f.first);
+    }
 }
 
 void Object::moveWidthToCenter(int count) {

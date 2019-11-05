@@ -13,11 +13,12 @@
 
 class Object {
 public:
-    Object(std::map<std::string, int> getFigures, std::vector<std::string> getFigureNames);
+    Object(std::map<std::string, int> figures);
     ~Object() = default;
     void draw();
 
 private:
+    void formFigureNames();
     void moveWidthToCenter(int count);
     void setHeight();
     void square(int count);
