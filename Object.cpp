@@ -14,8 +14,7 @@
 Object::Object(std::map<std::string, int> figures) :
 _figures(figures),
 _figureNames(),
-_width(50),
-_height(50),
+_fixedSize(50),
 _widthToCenter(0),
 _widthShift(150),
 _heightSquare(0),
@@ -154,10 +153,10 @@ void Object::square(int count) {
 
 void Object::drawSqaure(int number) {
     const int numberDegree = number - 1;
-    glVertex2f(_width + _widthShift * numberDegree - _widthToCenter, _height + _heightSquare);
-    glVertex2f(-_width + _widthShift * numberDegree - _widthToCenter, _height + _heightSquare);
-    glVertex2f(-_width + _widthShift * numberDegree - _widthToCenter, -_height + _heightSquare);
-    glVertex2f(_width + _widthShift * numberDegree - _widthToCenter, -_height + _heightSquare);
+    glVertex2f(_fixedSize + _widthShift * numberDegree - _widthToCenter, _fixedSize + _heightSquare);
+    glVertex2f(-_fixedSize + _widthShift * numberDegree - _widthToCenter, _fixedSize + _heightSquare);
+    glVertex2f(-_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightSquare);
+    glVertex2f(_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightSquare);
 }
 
 void Object::rect(int count) {
@@ -171,8 +170,8 @@ void Object::rect(int count) {
 }
 
 void Object::drawRect(int number) {
-    const int rectWidth = _width + (_width / 3.33);
-    const int rectHeight = _height / 1.5;
+    const int rectWidth = _fixedSize + (_fixedSize / 3.33);
+    const int rectHeight = _fixedSize / 1.5;
     const int numberDegree = number - 1;
     glVertex2f(rectWidth + _widthShift * numberDegree - _widthToCenter, rectHeight + _heightRect);
     glVertex2f(-rectWidth + _widthShift * numberDegree - _widthToCenter, rectHeight + _heightRect);
@@ -192,9 +191,9 @@ void Object::triangle(int count) {
 
 void Object::drawTriangle(int number) {
     const int numberDegree = number - 1;
-    glVertex3f(-_width + _widthShift * numberDegree - _widthToCenter, -_height + _heightTriangle, 0);
-    glVertex3f(0 + _widthShift * numberDegree - _widthToCenter, _height + _heightTriangle, 0);
-    glVertex3f(_width + _widthShift * numberDegree - _widthToCenter, -_height + _heightTriangle, 0);
+    glVertex3f(-_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightTriangle, 0);
+    glVertex3f(0 + _widthShift * numberDegree - _widthToCenter, _fixedSize + _heightTriangle, 0);
+    glVertex3f(_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightTriangle, 0);
 }
 
 void Object::circle(int count) {
@@ -215,8 +214,8 @@ void Object::drawCircle(int number) const {
     glVertex2f(centerX, centerY);
     for (int i = 0; i <= triangleAmount; i++) {
         glVertex2f(
-                   centerX + ((_width + 1) * cos(i * twicePi / triangleAmount)),
-                   centerY + ((_height - 1) * sin(i * twicePi / triangleAmount))
+                   centerX + ((_fixedSize + 1) * cos(i * twicePi / triangleAmount)),
+                   centerY + ((_fixedSize - 1) * sin(i * twicePi / triangleAmount))
                    );
     }
     glEnd();

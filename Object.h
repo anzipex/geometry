@@ -33,8 +33,7 @@ private:
     std::map<std::string, int> _figures;
     std::vector<std::string> _figureNames;
     
-    int _width;
-    int _height;
+    const int _fixedSize;
     int _widthToCenter;
     int _widthShift;
     
