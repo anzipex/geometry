@@ -9,7 +9,6 @@
 #include "Parser.h"
 
 Parser::Parser(int argc, char** argv) :
-_figureNames(),
 _args(),
 _curFigure(),
 _figures() {
@@ -19,7 +18,6 @@ _figures() {
     }
     _args = args;
     parseArgs();
-    formFigureNames();
 }
 
 void Parser::printUsage() {
@@ -59,22 +57,6 @@ void Parser::checkNextFigureNotEnd(std::vector<std::string>::iterator next) {
     }
 }
 
-void Parser::formFigureNames() {
-    std::string prev;
-    for (int i = 0; i < _args.size(); ++i) {
-        if (isFigure(_args[i])) {
-            if (_args[i] != prev) {
-                _figureNames.push_back(_args[i]);
-            }
-            prev = _args[i];
-        }
-    }
-}
-
 std::map<std::string, int> Parser::getFigures() const {
     return _figures;
-}
-
-std::vector<std::string> Parser::getFigureNames() const {
-    return _figureNames;
 }

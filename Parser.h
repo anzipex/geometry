@@ -24,9 +24,7 @@ private:
     static bool isFigure(std::string figure);
     static bool isDigit(std::string next);
     void checkNextFigureNotEnd(std::vector<std::string>::iterator next);
-    void formFigureNames();
 
-    std::vector<std::string> _figureNames;
     std::vector<std::string> _args;
     std::vector<std::string>::iterator _curFigure;
     std::map<std::string, int> _figures;
