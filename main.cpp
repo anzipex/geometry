@@ -11,8 +11,8 @@
 #include "Object.h"
 
 namespace {
-int WinWidth = 800;
-int WinHeight = 600;
+int WinWidth = 1024;
+int WinHeight = 768;
 bool Fullscreen = false;
 Object *object = nullptr;
 }
