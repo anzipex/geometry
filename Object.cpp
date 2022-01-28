@@ -1,125 +1,126 @@
-#include <math.h>
+#include <cmath>
+#include <utility>
 #include <GL/glut.h>
 #include "Object.h"
 
 Object::Object(std::map<std::string, int> figures) :
-_figures(figures),
-_figureNames(),
-_fixedSize(50),
-_widthToCenter(0),
-_widthShift(150),
-_heightSquare(0),
-_heightRect(0),
-_heightTriangle(0),
-_heightCircle(0) {
-    formFigureNames();
+primitives_(std::move(figures)),
+primitiveNames_(),
+fixedSize_(50),
+widthToCenter_(0),
+widthShift_(150),
+heightSquare_(0),
+heightRect_(0),
+heightTriangle_(0),
+heightCircle_(0) {
+    formPrimitiveNames();
     setHeight();
 }
 
-void Object::formFigureNames() {
-    for (auto& f : _figures) {
-        _figureNames.push_back(f.first);
+void Object::formPrimitiveNames() {
+    for (auto& p : primitives_) {
+        primitiveNames_.push_back(p.first);
     }
 }
 
 void Object::moveWidthToCenter(int count) {
     if (count >= 2) {
-        _widthToCenter = (_widthShift / 3 + ((_widthShift / 3) / 2)) * (count - 1);
+        widthToCenter_ = (widthShift_ / 3 + ((widthShift_ / 3) / 2)) * (count - 1);
     } else {
-        _widthToCenter = 0;
+        widthToCenter_ = 0;
     }
 }
 
 void Object::setHeight() {
-    if (_figureNames.size() == 2) {
-        if (_figureNames.front() == "square") {
-            _heightSquare = 50;
-        } else if (_figureNames.front() == "rect") {
-            _heightRect = 50;
-        } else if (_figureNames.front() == "triangle") {
-            _heightTriangle = 50;
-        } else if (_figureNames.front() == "circle") {
-            _heightCircle = 50;
+    if (primitiveNames_.size() == 2) {
+        if (primitiveNames_.front() == "square") {
+            heightSquare_ = 50;
+        } else if (primitiveNames_.front() == "rect") {
+            heightRect_ = 50;
+        } else if (primitiveNames_.front() == "triangle") {
+            heightTriangle_ = 50;
+        } else if (primitiveNames_.front() == "circle") {
+            heightCircle_ = 50;
         }
 
-        if (_figureNames.back() == "square") {
-            _heightSquare = -50;
-        } else if (_figureNames.back() == "rect") {
-            _heightRect = -50;
-        } else if (_figureNames.back() == "triangle") {
-            _heightTriangle = -50;
-        } else if (_figureNames.back() == "circle") {
-            _heightCircle = -50;
-        }
-    }
-
-    if (_figureNames.size() == 3) {
-        if (_figureNames.front() == "square") {
-            _heightSquare = 100;
-        } else if (_figureNames.front() == "rect") {
-            _heightRect = 100;
-        } else if (_figureNames.front() == "triangle") {
-            _heightTriangle = 100;
-        } else if (_figureNames.front() == "circle") {
-            _heightCircle = 100;
-        }
-
-        if (_figureNames.back() == "square") {
-            _heightSquare = -100;
-        } else if (_figureNames.back() == "rect") {
-            _heightRect = -100;
-        } else if (_figureNames.back() == "triangle") {
-            _heightTriangle = -100;
-        } else if (_figureNames.back() == "circle") {
-            _heightCircle = -100;
+        if (primitiveNames_.back() == "square") {
+            heightSquare_ = -50;
+        } else if (primitiveNames_.back() == "rect") {
+            heightRect_ = -50;
+        } else if (primitiveNames_.back() == "triangle") {
+            heightTriangle_ = -50;
+        } else if (primitiveNames_.back() == "circle") {
+            heightCircle_ = -50;
         }
     }
 
-    if (_figureNames.size() == 4) {
-        if (_figureNames.front() == "square") {
-            _heightSquare = 200;
-        } else if (_figureNames.front() == "rect") {
-            _heightRect = 200;
-        } else if (_figureNames.front() == "triangle") {
-            _heightTriangle = 200;
-        } else if (_figureNames.front() == "circle") {
-            _heightCircle = 200;
+    if (primitiveNames_.size() == 3) {
+        if (primitiveNames_.front() == "square") {
+            heightSquare_ = 100;
+        } else if (primitiveNames_.front() == "rect") {
+            heightRect_ = 100;
+        } else if (primitiveNames_.front() == "triangle") {
+            heightTriangle_ = 100;
+        } else if (primitiveNames_.front() == "circle") {
+            heightCircle_ = 100;
         }
 
-        if (_figureNames.at(1) == "square") {
-            _heightSquare = 60;
-        } else if (_figureNames.at(1) == "rect") {
-            _heightRect = 60;
-        } else if (_figureNames.at(1) == "triangle") {
-            _heightTriangle = 60;
-        } else if (_figureNames.at(1) == "circle") {
-            _heightCircle = 60;
+        if (primitiveNames_.back() == "square") {
+            heightSquare_ = -100;
+        } else if (primitiveNames_.back() == "rect") {
+            heightRect_ = -100;
+        } else if (primitiveNames_.back() == "triangle") {
+            heightTriangle_ = -100;
+        } else if (primitiveNames_.back() == "circle") {
+            heightCircle_ = -100;
+        }
+    }
+
+    if (primitiveNames_.size() == 4) {
+        if (primitiveNames_.front() == "square") {
+            heightSquare_ = 200;
+        } else if (primitiveNames_.front() == "rect") {
+            heightRect_ = 200;
+        } else if (primitiveNames_.front() == "triangle") {
+            heightTriangle_ = 200;
+        } else if (primitiveNames_.front() == "circle") {
+            heightCircle_ = 200;
         }
 
-        if (_figureNames.at(2) == "square") {
-            _heightSquare = -60;
-        } else if (_figureNames.at(2) == "rect") {
-            _heightRect = -60;
-        } else if (_figureNames.at(2) == "triangle") {
-            _heightTriangle = -60;
-        } else if (_figureNames.at(2) == "circle") {
-            _heightCircle = -60;
+        if (primitiveNames_.at(1) == "square") {
+            heightSquare_ = 60;
+        } else if (primitiveNames_.at(1) == "rect") {
+            heightRect_ = 60;
+        } else if (primitiveNames_.at(1) == "triangle") {
+            heightTriangle_ = 60;
+        } else if (primitiveNames_.at(1) == "circle") {
+            heightCircle_ = 60;
         }
 
-        if (_figureNames.back() == "square") {
-            _heightSquare = -210;
-        } else if (_figureNames.back() == "rect") {
-            _heightRect = -210;
-        } else if (_figureNames.back() == "triangle") {
-            _heightTriangle = -210;
-        } else if (_figureNames.back() == "circle") {
-            _heightCircle = -210;
+        if (primitiveNames_.at(2) == "square") {
+            heightSquare_ = -60;
+        } else if (primitiveNames_.at(2) == "rect") {
+            heightRect_ = -60;
+        } else if (primitiveNames_.at(2) == "triangle") {
+            heightTriangle_ = -60;
+        } else if (primitiveNames_.at(2) == "circle") {
+            heightCircle_ = -60;
+        }
+
+        if (primitiveNames_.back() == "square") {
+            heightSquare_ = -210;
+        } else if (primitiveNames_.back() == "rect") {
+            heightRect_ = -210;
+        } else if (primitiveNames_.back() == "triangle") {
+            heightTriangle_ = -210;
+        } else if (primitiveNames_.back() == "circle") {
+            heightCircle_ = -210;
         }
     }
 }
 
 void Object::draw() {
-    for (const auto& f : _figures) {
+    for (const auto& f : primitives_) {
         if (f.first == "square") {
             square(f.second);
         } else if (f.first == "rect") {
@@ -135,79 +136,77 @@ void Object::draw() {
 void Object::square(int count) {
     moveWidthToCenter(count);
     glBegin(GL_QUADS);
-    for (int i = 0; i < count; ++i) {
+    for (size_t i = 0; i < count; ++i) {
         int number = i + 1;
-        drawSqaure(number);
+        drawSquare(number);
     }
     glEnd();
 }
 
-void Object::drawSqaure(int number) {
-    const int numberDegree = number - 1;
-    glVertex2f(_fixedSize + _widthShift * numberDegree - _widthToCenter,_fixedSize + _heightSquare);
-    glVertex2f(-_fixedSize + _widthShift * numberDegree - _widthToCenter, _fixedSize + _heightSquare);
-    glVertex2f(-_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightSquare);
-    glVertex2f(_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightSquare);
+void Object::drawSquare(int number) const {
+    const int degree = number - 1;
+    glVertex2f(fixedSize_ + widthShift_ * degree - widthToCenter_, fixedSize_ + heightSquare_);
+    glVertex2f(-fixedSize_ + widthShift_ * degree - widthToCenter_, fixedSize_ + heightSquare_);
+    glVertex2f(-fixedSize_ + widthShift_ * degree - widthToCenter_, -fixedSize_ + heightSquare_);
+    glVertex2f(fixedSize_ + widthShift_ * degree - widthToCenter_, -fixedSize_ + heightSquare_);
 }
 
 void Object::rect(int count) {
     moveWidthToCenter(count);
     glBegin(GL_QUADS);
-    for (int i = 0; i < count; ++i) {
+    for (size_t i = 0; i < count; ++i) {
         int number = i + 1;
         drawRect(number);
     }
     glEnd();
 }
 
-void Object::drawRect(int number) {
-    const int rectWidth = _fixedSize + (_fixedSize / 3.33);
-    const int rectHeight = _fixedSize / 1.5;
-    const int numberDegree = number - 1;
-    glVertex2f(rectWidth + _widthShift * numberDegree - _widthToCenter, rectHeight + _heightRect);
-    glVertex2f(-rectWidth + _widthShift * numberDegree - _widthToCenter, rectHeight + _heightRect);
-    glVertex2f(-rectWidth + _widthShift * numberDegree - _widthToCenter, -rectHeight + _heightRect);
-    glVertex2f(rectWidth + _widthShift * numberDegree - _widthToCenter, -rectHeight + _heightRect);
+void Object::drawRect(int number) const {
+    const int width = fixedSize_ + (fixedSize_ / 3.33);
+    const int height = fixedSize_ / 1.5;
+    const int degree = number - 1;
+    glVertex2f(width + widthShift_ * degree - widthToCenter_, height + heightRect_);
+    glVertex2f(-width + widthShift_ * degree - widthToCenter_, height + heightRect_);
+    glVertex2f(-width + widthShift_ * degree - widthToCenter_, -height + heightRect_);
+    glVertex2f(width + widthShift_ * degree - widthToCenter_, -height + heightRect_);
 }
 
 void Object::triangle(int count) {
     moveWidthToCenter(count);
     glBegin(GL_TRIANGLES);
-    for (int i = 0; i < count; ++i) {
+    for (size_t i = 0; i < count; ++i) {
         int number = i + 1;
         drawTriangle(number);
     }
     glEnd();
 }
 
-void Object::drawTriangle(int number) {
-    const int numberDegree = number - 1;
-    glVertex3f(-_fixedSize + _widthShift * numberDegree - _widthToCenter,
-        -_fixedSize + _heightTriangle, 0);
-    glVertex3f(0 + _widthShift * numberDegree - _widthToCenter, _fixedSize + _heightTriangle, 0);
-    glVertex3f(_fixedSize + _widthShift * numberDegree - _widthToCenter,
-        -_fixedSize + _heightTriangle, 0);
+void Object::drawTriangle(int number) const {
+    const int degree = number - 1;
+    glVertex3f(-fixedSize_ + widthShift_ * degree - widthToCenter_,-fixedSize_ + heightTriangle_, 0);
+    glVertex3f(0 + widthShift_ * degree - widthToCenter_, fixedSize_ + heightTriangle_, 0);
+    glVertex3f(fixedSize_ + widthShift_ * degree - widthToCenter_, -fixedSize_ + heightTriangle_, 0);
 }
 
 void Object::circle(int count) {
     moveWidthToCenter(count);
-    for (int i = 0; i < count; ++i) {
+    for (size_t i = 0; i < count; ++i) {
         int number = i + 1;
         drawCircle(number);
     }
 }
 
 void Object::drawCircle(int number) const {
-    const int numberDegree = number - 1;
-    const int centerX = 0 + _widthShift * numberDegree - _widthToCenter;
-    const int centerY = 0 + _heightCircle;
+    const int degree = number - 1;
+    const int centerX = 0 + widthShift_ * degree - widthToCenter_;
+    const int centerY = 0 + heightCircle_;
     const int triangleAmount = 100;
     const float twicePi = 2.0f * M_PI;
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(centerX, centerY);
-    for (int i = 0; i <= triangleAmount; i++) {
-        glVertex2f(centerX + ((_fixedSize + 1) * cos(i * twicePi / triangleAmount)),
-            centerY + ((_fixedSize - 1) * sin(i * twicePi / triangleAmount)));
+    for (size_t i = 0; i <= triangleAmount; ++i) {
+        glVertex2f(centerX + ((fixedSize_ + 1) * std::cos(i * twicePi / triangleAmount)),
+            centerY + ((fixedSize_ - 1) * std::sin(i * twicePi / triangleAmount)));
     }
     glEnd();
 }

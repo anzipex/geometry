@@ -5,32 +5,35 @@
 
 class Object {
 public:
-    Object(std::map<std::string, int> figures);
+    explicit Object(std::map<std::string, int> figures);
     ~Object() = default;
+
     void draw();
 
 private:
-    void formFigureNames();
+    void formPrimitiveNames();
     void moveWidthToCenter(int count);
     void setHeight();
+
     void square(int count);
-    void drawSqaure(int number);
     void rect(int count);
-    void drawRect(int number);
     void triangle(int count);
-    void drawTriangle(int number);
     void circle(int count);
+
+    void drawSquare(int number) const;
+    void drawRect(int number) const;
+    void drawTriangle(int number) const;
     void drawCircle(int number) const;
 
-    std::map<std::string, int> _figures;
-    std::vector<std::string> _figureNames;
+    std::map<std::string, int> primitives_;
+    std::vector<std::string> primitiveNames_;
 
-    const int _fixedSize;
-    int _widthToCenter;
-    int _widthShift;
+    const int fixedSize_;
+    int widthToCenter_;
+    int widthShift_;
 
-    int _heightSquare;
-    int _heightRect;
-    int _heightTriangle;
-    int _heightCircle;
+    int heightSquare_;
+    int heightRect_;
+    int heightTriangle_;
+    int heightCircle_;
 };

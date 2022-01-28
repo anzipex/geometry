@@ -7,17 +7,17 @@ class Parser {
 public:
     Parser(int argc, char** argv);
     ~Parser() = default;
+
     std::map<std::string, int> getFigures() const;
-    std::vector<std::string> getFigureNames() const;
 
 private:
     static void printUsage();
     void parseArgs();
-    static bool isFigure(std::string figure);
+    static bool isPrimitive(const std::string &name);
     static bool isDigit(std::string next);
-    void checkNextFigureNotEnd(std::vector<std::string>::iterator next);
+    void checkNextFigureNotLast(std::vector<std::string>::iterator next);
 
-    std::vector<std::string> _args;
-    std::vector<std::string>::iterator _curFigure;
-    std::map<std::string, int> _figures;
+    std::vector<std::string> args_;
+    std::vector<std::string>::iterator curPrimitive_;
+    std::map<std::string, int> primitives_;
 };

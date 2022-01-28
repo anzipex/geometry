@@ -3,9 +3,8 @@
 #include "Object.h"
 
 namespace {
-int WinWidth = 1024;
-int WinHeight = 768;
-bool Fullscreen = false;
+const int WinWidth = 1024;
+const int WinHeight = 768;
 Object *object = nullptr;
 }
 

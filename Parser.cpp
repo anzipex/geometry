@@ -2,14 +2,14 @@
 #include "Parser.h"
 
 Parser::Parser(int argc, char** argv) :
-_args(),
-_curFigure(),
-_figures() {
+args_(),
+curPrimitive_(),
+primitives_() {
     std::vector<std::string> args;
     for (int i = 1; i < argc; ++i) {
-        args.push_back(argv[i]);
+        args.emplace_back(argv[i]);
     }
-    _args = args;
+    args_ = args;
     parseArgs();
 }
 
@@ -18,22 +18,22 @@ void Parser::printUsage() {
 }
 
 void Parser::parseArgs() {
-    for (_curFigure = std::begin(_args); _curFigure != std::end(_args); ++_curFigure) {
-        if (isFigure(*_curFigure)) {
-            checkNextFigureNotEnd(std::next(_curFigure));
+    for (curPrimitive_ = std::begin(args_); curPrimitive_ != std::end(args_); ++curPrimitive_) {
+        if (isPrimitive(*curPrimitive_)) {
+            checkNextFigureNotLast(std::next(curPrimitive_));
         } else {
-            std::cerr << "'" << (*_curFigure) << "'" << " is invalid figure" << std::endl;
+            std::cerr << "'" << (*curPrimitive_) << "'" << " is invalid figure" << std::endl;
             printUsage();
         }
     }
 }
 
-bool Parser::isFigure(std::string figure) {
-    return (figure == "square" || figure == "rect" || figure == "triangle" || figure == "circle");
+bool Parser::isPrimitive(const std::string &name) {
+    return (name == "square" || name == "rect" || name == "triangle" || name == "circle");
 }
 
 bool Parser::isDigit(std::string next) {
-    for (char& c : next) {
+    for (char &c : next) {
         if (!isdigit(c) || isalpha(c)) {
             return false;
         };
@@ -41,15 +41,15 @@ bool Parser::isDigit(std::string next) {
     return true;
 }
 
-void Parser::checkNextFigureNotEnd(std::vector<std::string>::iterator next) {
-    if (next != std::end(_args) && !isFigure(*next)) {
+void Parser::checkNextFigureNotLast(std::vector<std::string>::iterator next) {
+    if (next != std::end(args_) && !isPrimitive(*next)) {
         if (isDigit(*next)) {
-            _figures.insert({*_curFigure, std::stoi(*next)});
+            primitives_.insert({*curPrimitive_, std::stoi(*next)});
         }
-        *(++_curFigure);
+        *(++curPrimitive_);
     }
 }
 
 std::map<std::string, int> Parser::getFigures() const {
-    return _figures;
+    return primitives_;
 }
