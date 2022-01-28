@@ -1,10 +1,3 @@
-/**
- * @file Parser.h
- * @brief Parser header
- * @author a.akulin
- * @date October 31, 2019
- */
-
 #pragma once
 
 #include <vector>

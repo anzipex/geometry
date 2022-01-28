@@ -1,10 +1,3 @@
-/**
- * @file Parser.cpp
- * @brief Parser implementation
- * @author a.akulin
- * @date October 31, 2019
- */
-
 #include <iostream>
 #include "Parser.h"
 

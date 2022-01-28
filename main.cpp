@@ -1,10 +1,3 @@
-/**
- * @file main.cpp
- * @brief main
- * @author a.akulin
- * @date October 7, 2019
- */
-
 #include <GL/glut.h>
 #include "Parser.h"
 #include "Object.h"

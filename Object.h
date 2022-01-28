@@ -1,10 +1,3 @@
-/**
- * @file Object.h
- * @brief Object header
- * @author a.akulin
- * @date October 7, 2019
- */
-
 #pragma once
 
 #include <vector>

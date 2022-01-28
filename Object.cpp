@@ -1,10 +1,3 @@
-/**
- * @file Object.cpp
- * @brief Object implementation
- * @author a.akulin
- * @date October 7, 2019
- */
-
 #include <math.h>
 #include <GL/glut.h>
 #include "Object.h"
