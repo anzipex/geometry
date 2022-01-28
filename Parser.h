@@ -1,4 +1,4 @@
-/** 
+/**
  * @file Parser.h
  * @brief Class description Parser
  * @author a.akulin

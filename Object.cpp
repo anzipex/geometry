@@ -1,4 +1,4 @@
-/** 
+/**
  * @file Object.cpp
  * @brief Class implementation Object
  * @author a.akulin
@@ -6,7 +6,7 @@
  */
 
 #include <iostream>
-#include <string> 
+#include <string>
 #include <math.h>
 #include <GL/glut.h>
 #include "Object.h"

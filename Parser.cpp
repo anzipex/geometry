@@ -1,4 +1,4 @@
-/** 
+/**
  * @file Parser.cpp
  * @brief Class implementation Parser
  * @author a.akulin

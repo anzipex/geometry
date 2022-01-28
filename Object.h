@@ -1,4 +1,4 @@
-/** 
+/**
  * @file Object.h
  * @brief Class description Object
  * @author a.akulin
@@ -32,11 +32,11 @@ private:
 
     std::map<std::string, int> _figures;
     std::vector<std::string> _figureNames;
-    
+
     const int _fixedSize;
     int _widthToCenter;
     int _widthShift;
-    
+
     int _heightSquare;
     int _heightRect;
     int _heightTriangle;
