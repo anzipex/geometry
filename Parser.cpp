@@ -1,6 +1,6 @@
 /**
  * @file Parser.cpp
- * @brief Class implementation Parser
+ * @brief Parser implementation
  * @author a.akulin
  * @date October 31, 2019
  */

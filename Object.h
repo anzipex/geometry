@@ -1,12 +1,11 @@
 /**
  * @file Object.h
- * @brief Class description Object
+ * @brief Object header
  * @author a.akulin
  * @date October 7, 2019
  */
 
-#ifndef OBJECT_H
-#define OBJECT_H
+#pragma once
 
 #include <vector>
 #include <map>
@@ -42,5 +41,3 @@ private:
     int _heightTriangle;
     int _heightCircle;
 };
-
-#endif /* OBJECT_H */

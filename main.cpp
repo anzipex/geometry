@@ -1,11 +1,10 @@
 /**
  * @file main.cpp
- * @brief geometry
+ * @brief main
  * @author a.akulin
  * @date October 7, 2019
  */
 
-#include <iostream>
 #include <GL/glut.h>
 #include "Parser.h"
 #include "Object.h"
@@ -39,9 +38,7 @@ void DisplayFunc() {
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
-
     object->draw();
-
     glutSwapBuffers();
 }
 
@@ -64,8 +61,6 @@ int main(int argc, char** argv) {
     Parser parser(argc, argv);
     object = new Object(parser.getFigures());
     Display(argc, argv);
-
     glutMainLoop();
-
     return 0;
 }

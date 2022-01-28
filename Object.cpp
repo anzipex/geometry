@@ -1,12 +1,10 @@
 /**
  * @file Object.cpp
- * @brief Class implementation Object
+ * @brief Object implementation
  * @author a.akulin
  * @date October 7, 2019
  */
 
-#include <iostream>
-#include <string>
 #include <math.h>
 #include <GL/glut.h>
 #include "Object.h"
@@ -153,7 +151,7 @@ void Object::square(int count) {
 
 void Object::drawSqaure(int number) {
     const int numberDegree = number - 1;
-    glVertex2f(_fixedSize + _widthShift * numberDegree - _widthToCenter, _fixedSize + _heightSquare);
+    glVertex2f(_fixedSize + _widthShift * numberDegree - _widthToCenter,_fixedSize + _heightSquare);
     glVertex2f(-_fixedSize + _widthShift * numberDegree - _widthToCenter, _fixedSize + _heightSquare);
     glVertex2f(-_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightSquare);
     glVertex2f(_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightSquare);
@@ -191,9 +189,11 @@ void Object::triangle(int count) {
 
 void Object::drawTriangle(int number) {
     const int numberDegree = number - 1;
-    glVertex3f(-_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightTriangle, 0);
+    glVertex3f(-_fixedSize + _widthShift * numberDegree - _widthToCenter,
+        -_fixedSize + _heightTriangle, 0);
     glVertex3f(0 + _widthShift * numberDegree - _widthToCenter, _fixedSize + _heightTriangle, 0);
-    glVertex3f(_fixedSize + _widthShift * numberDegree - _widthToCenter, -_fixedSize + _heightTriangle, 0);
+    glVertex3f(_fixedSize + _widthShift * numberDegree - _widthToCenter,
+        -_fixedSize + _heightTriangle, 0);
 }
 
 void Object::circle(int count) {
@@ -213,10 +213,8 @@ void Object::drawCircle(int number) const {
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(centerX, centerY);
     for (int i = 0; i <= triangleAmount; i++) {
-        glVertex2f(
-                   centerX + ((_fixedSize + 1) * cos(i * twicePi / triangleAmount)),
-                   centerY + ((_fixedSize - 1) * sin(i * twicePi / triangleAmount))
-                   );
+        glVertex2f(centerX + ((_fixedSize + 1) * cos(i * twicePi / triangleAmount)),
+            centerY + ((_fixedSize - 1) * sin(i * twicePi / triangleAmount)));
     }
     glEnd();
 }

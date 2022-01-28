@@ -1,12 +1,11 @@
 /**
  * @file Parser.h
- * @brief Class description Parser
+ * @brief Parser header
  * @author a.akulin
  * @date October 31, 2019
  */
 
-#ifndef PARSER_H
-#define PARSER_H
+#pragma once
 
 #include <vector>
 #include <map>
@@ -29,5 +28,3 @@ private:
     std::vector<std::string>::iterator _curFigure;
     std::map<std::string, int> _figures;
 };
-
-#endif /* PARSER_H */
