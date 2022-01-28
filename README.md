@@ -1,5 +1,5 @@
 # geometry
-Drawing geometric figures
+Draw geometric primotives
 
 ###### Requirements:
 ```
